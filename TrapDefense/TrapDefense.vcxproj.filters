@@ -18,5 +18,8 @@
     <ClCompile Include="Unit_algorithm.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Upgrade.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
