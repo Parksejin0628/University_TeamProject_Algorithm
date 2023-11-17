@@ -1,6 +1,4 @@
-﻿#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+﻿#include"ProgramBase.h"
 
 int bigger(int arr1, int arr2) //큰 수 비교
 {
@@ -78,8 +76,8 @@ int bag_zeroone(int n, int M, int **bag, Trap trap[], bool* selectedTraps)
 
 int main(void)
 {
-    int n; //모든 함정 개수의 합, Traps배열의 크기?를 구해서 초기화할듯
-    int money; //현재 보유한 돈
+    int n = 0; //모든 함정 개수의 합, Traps배열의 크기?를 구해서 초기화할듯
+    int money = 0; //현재 보유한 돈
 
     Trap traps[2]; //구현된 함정 배열, 실제로는 동적으로 할당되어있음
 
