@@ -138,6 +138,7 @@
     <ClInclude Include="PrintManager.h" />
     <ClInclude Include="ProgramBase.h" />
     <ClInclude Include="Unit_algorithm.h" />
+    <ClInclude Include="Upgrade.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

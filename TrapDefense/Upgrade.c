@@ -1,36 +1,15 @@
 ﻿#include"ProgramBase.h"
-
-int bigger(int arr1, int arr2) //큰 수 비교
-{
-    return (arr1 > arr2) ? arr1 : arr2;
-}
-
-//shape에 사용될 정보
-#define TRIANGLE 1
-#define RECTANGLE 2
-#define HEXAGON 3
-#define STAR 4 
-#define Circle 5
-
-//Trap구조체로 이루어진 연결리스트로 함정관리하면 좋을듯
-typedef struct Trap {
-    int damage;
-    int xpos;
-    int ypos;
-    int shape;
-    int up_value;
-    int up_cost;
-}Trap;
+#include"Upgrade.h"
 
 //함정 업그레이드시 사용하는 가격 정보 (값은 예시)
-int info_up_cost[5][5] = { {10, 20, 30, 40, 50},
+info_up_cost[5][5] = { {10, 20, 30, 40, 50},
                   {20, 40, 60, 80, 100},
                   {30, 60, 90, 120, 150},
                   {40, 80, 120, 160, 200},
                   {50, 100, 150, 200, 250} };
 
 //함정 업그레이드시 밸류 정보 (값은 예시)
-int info_up_value[5][5] = { {1, 2, 3, 4, 5},
+info_up_value[5][5] = { {1, 2, 3, 4, 5},
                      {2, 4, 6, 8, 10},
                      {3, 6, 9, 12, 15},
                      {4, 8, 10, 16, 20},
@@ -74,6 +53,7 @@ int bag_zeroone(int n, int M, int **bag, Trap trap[], bool* selectedTraps)
     return bag[n][M];
 }
 
+/*
 int main(void)
 {
     int n = 0; //모든 함정 개수의 합, Traps배열의 크기?를 구해서 초기화할듯
@@ -104,3 +84,4 @@ int main(void)
 
     return 0;
 }
+*/
