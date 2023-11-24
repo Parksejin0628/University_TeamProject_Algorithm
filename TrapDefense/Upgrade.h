@@ -2,19 +2,19 @@
 
 #include"ProgramBase.h"
 
-int bigger(int arr1, int arr2) //Å« ¼ö ºñ±³
+int bigger(int arr1, int arr2) //í° ìˆ˜ ë¹„êµ
 {
     return (arr1 > arr2) ? arr1 : arr2;
 }
 
-//shape¿¡ »ç¿ëµÉ Á¤º¸
+//shapeì— ì‚¬ìš©ë  ì •ë³´
 #define TRIANGLE 1
 #define RECTANGLE 2
 #define HEXAGON 3
 #define STAR 4 
 #define Circle 5
 
-//Trap±¸Á¶Ã¼·Î ÀÌ·ç¾îÁø ¿¬°á¸®½ºÆ®·Î ÇÔÁ¤°ü¸®ÇÏ¸é ÁÁÀ»µí
+//Trapêµ¬ì¡°ì²´ë¡œ ì´ë£¨ì–´ì§„ ì—°ê²°ë¦¬ìŠ¤íŠ¸ë¡œ í•¨ì •ê´€ë¦¬í•˜ë©´ ì¢‹ì„ë“¯
 typedef struct Trap {
     int damage;
     int xpos;
@@ -24,11 +24,11 @@ typedef struct Trap {
     int up_cost;
 }Trap;
 
-//ÇÔÁ¤ ¾÷±×·¹ÀÌµå½Ã »ç¿ëÇÏ´Â °¡°İ Á¤º¸ (°ªÀº ¿¹½Ã)
+//í•¨ì • ì—…ê·¸ë ˆì´ë“œì‹œ ì‚¬ìš©í•˜ëŠ” ê°€ê²© ì •ë³´ (ê°’ì€ ì˜ˆì‹œ)
 int info_up_cost[5][5];
 
-//ÇÔÁ¤ ¾÷±×·¹ÀÌµå½Ã ¹ë·ù Á¤º¸ (°ªÀº ¿¹½Ã)
+//í•¨ì • ì—…ê·¸ë ˆì´ë“œì‹œ ë°¸ë¥˜ ì •ë³´ (ê°’ì€ ì˜ˆì‹œ)
 int info_up_value[5][5];
 
-//01°¡¹æ¹®Á¦ ¾Ë°í¸®Áò
-int bag_zeroone(int n, int M, int** bag, Trap trap[], bool* selectedTraps)
+//01ê°€ë°© ì•Œê³ ë¦¬ì¦˜ìœ¼ë¡œ ìµœëŒ€ ë°¸ë¥˜ê°’ìœ¼ë¡œ ì—…ë°ì´íŠ¸ í•  í•¨ì •ì„ ì„ íƒí•˜ëŠ” í•¨ìˆ˜
+int bag_zeroone(int n, int M, int** bag, Trap trap[], bool* selectedTraps);
