@@ -1,49 +1,49 @@
 #pragma once
 #include"ProgramBase.h"
 
-//ÇÃ·¹ÀÌ¾î °ü·Ã
+//ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define EASY_PLAYER_HP 99
 #define NORMAL_PLAYER_HP 60
 #define HARD_PLAYER_HP 30
 #define HELL_PLAYER_HP 1
 
-//ÀçÈ­ °ü·Ã
-#define SEED_INIT 500 //ÇÔÁ¤ ¼³Ä¡°¡´ÉÇÑ ÀçÈ­
-#define GOLD_INIT 0 //ÇÔÁ¤ ¾÷±×·¹ÀÌµå °¡´ÉÇÑ ÀçÈ­
-#define REWARD_GOLD 10//Àû Ã³¸®½Ã °ñµå º¸»ó
-#define REWARD_SEED 10//Àû Ã³¸®½Ã È®·üÀûÀ¸·Î SEED È¹µæÇÑ ¾ç
-#define RANDOM_REWARD_SEED 50//Seed È®·ü ·£´ýÀ¸·Î È¹µæ 50ÆÛ·Î ÀÓÀÇ·Î ¼³Á¤
+//ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+#define SEED_INIT 500 //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­
+#define GOLD_INIT 0 //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­
+#define REWARD_GOLD 10//ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+#define REWARD_SEED 10//ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SEED È¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+#define RANDOM_REWARD_SEED 50//Seed È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 50ï¿½Û·ï¿½ ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-//ÇÔÁ¤ °ü·Ã
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define TRIANGLE_TRAP_DAMAGE 3
 #define RECTANGLE_TRAP_DAMAGE 4
 #define HEXAGON_TRAP_DAMAGE 6
 #define STAR_TRAP_DAMAGE 10
-#define TRAP_SET_UP_SEED 30//ÇÔÁ¤ ¼³Ä¡ ºñ¿ë
+#define TRAP_SET_UP_SEED 30//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
 
-//Àû À¯´Ö °ü·Ã
-#define ENEMY_HP 3 //Àû À¯´Ö ÃÊ±â hp
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+#define ENEMY_HP 3 //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ hp
 #define ENEMY_INIT_NUMBER 10
 
-//º»Áø ÁÂÇ¥ °ü·Ã
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
 #define NEXUS_XPOS -20
 #define NEXUS_YPOS -20
 
-//½ºÅ×ÀÌÁö °ü·Ã
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 int stagestep = 1;
-//º»Áø ÁÂÇ¥ - ³ÊºñÃß°¡ ÇØ¾ß µÉÁö´Â ÀÌ¹øÁÖ ÇÇµå¹éÀ» ÅëÇØ... Å¾ºä¶ó ÇÊ¿ä ¾øÀ» ¼öµµ?
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ - ï¿½Êºï¿½ï¿½ß°ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½... Å¾ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?
 
-//Àû ½ºÆù À§Ä¡
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 #define ENEMY_SPAWN_XPOS 20
 #define ENEMY_SPAWN_YPOS 20
 
-//¸ÞÀÎÇÔ¼ö Enemy Å¸ÀÔ ¹è¿­ »ý¼ºÀ§ÇØ ¸¸µê
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ Enemy Å¸ï¿½ï¿½ ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define MAX_ENEMY 100
 typedef struct Nexus {
     int xpos;
     int ypos;
 }Nexus;
-//ÇÃ·¹ÀÌ¾î °ü·Ã Á¤º¸
+//ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 typedef struct Player {
     int HP;
     int Seed;
@@ -53,17 +53,19 @@ typedef struct Player {
 Player player;
 
 typedef enum {
+    WALL,
     TRIANGLE,
     RECTANGLE,
     HEXAGON,
     STAR,
     Circle,
-    Diamond //º¸½º ¸ð¾ç
+    Diamond //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 } Shape;
 
 typedef struct Trap {
-    int damage;//Æ®·¦ µ¥¹ÌÁö
-    int upgrade;//Æ®·¦ÀÇ ¾÷±×·¹ÀÌµå ´Ü°è
+    bool isExist;
+    int damage;//Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    int upgrade;//Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½Ü°ï¿½
     int xpos;
     int ypos;
     Shape shape;
@@ -71,7 +73,7 @@ typedef struct Trap {
 
 typedef struct Enemy {
     int HP;
-    int value;//ÀûÀÌ 3¶ó¿îµå¸¶´Ù hp°¡ »ó½ÂÇÏ±â ¶§¹®¿¡ value·Î ÁöÁ¤
+    int value;//ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½å¸¶ï¿½ï¿½ hpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     int xpos;
     int ypos;
     Shape shape;
@@ -85,14 +87,14 @@ typedef struct EnemySpawner {
 }EnemySpawner;
 
 void InitGame();
-int TrapSignal();//Æ®·¦ ¼³Ä¡ ½ÅÈ£¸¦ º¸³¿
-Trap InitTrap();//½ÅÈ£¿¡ ¸Â´Â Æ®·¦ »ý¼º
-void EnemySpawn(); //Àû À¯´Ö »ý¼ºÇÔ¼ö
-void EnemyMove(); //Àû À¯´Ö ÀÌµ¿ÇÔ¼ö
-void EnemyDamage(Enemy* enemy, Trap* trap);//Àû À¯´ÖÀÌ ÇÔÁ¤À» Áö³ª°¡¸é µ¥¹ÌÁö¸¦ ÀÔ´Â´Ù.
+int TrapSignal();//Æ®ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+Trap InitTrap();//ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´ï¿½ Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+void EnemySpawn(); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
+void EnemyMove(); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ô¼ï¿½
+void EnemyDamage(Enemy* enemy, Trap* trap);//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Â´ï¿½.
 bool isCrashWithPlayer(Enemy* enemy, Player* player);
 bool isCrashWithTrap(Enemy* enemy, Trap* trap);
-void TrapUpgrade(); //¾÷±×·¹ÀÌµå ¾Ë°í¸®Áò »ç¿ë
+void TrapUpgrade(); //ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 void PlayerHPDecrease(Enemy* enemy, Player* player);
 void IsNextStage();
 void InitNexus();

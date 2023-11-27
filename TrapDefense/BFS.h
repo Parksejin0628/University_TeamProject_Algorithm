@@ -6,6 +6,7 @@
 #define NUM_DIRECTIONS 4
 #define HEIGHT 30
 #define WIDTH 30
+#define INF 999999
 
 // 변수 선언
 static int DIRECTION_OFFSETS[NUM_DIRECTIONS][2] = {
@@ -23,4 +24,14 @@ typedef struct MapPositionType
 	int direction;
 } MapPosition;
 
-enum PosStatus { NOT_VISIT = 0, WALL = 1 , VISIT = 2  };
+enum PosStatus { NOT_VISIT = 0, VISIT = 1 };
+
+typedef struct Field {
+	Trap trap;
+	Enemy enemy;
+	int map;
+}Field;
+
+int is_movable(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], MapPosition pos);
+
+MapPosition findPath(Field field[WIDTH][HEIGHT], MapPosition start, MapPosition end);

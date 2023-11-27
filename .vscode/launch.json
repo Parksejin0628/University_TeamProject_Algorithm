@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/User/Documents/GitHub/University_TeamProject_Algorithm/TrapDefense",
-      "program": "c:/Users/User/Documents/GitHub/University_TeamProject_Algorithm/TrapDefense/build/Debug/outDebug",
+      "cwd": "c:/Users/User/Documents/GitHub/University_TeamProject_Algorithm",
+      "program": "c:/Users/User/Documents/GitHub/University_TeamProject_Algorithm/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
