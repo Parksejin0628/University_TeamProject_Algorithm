@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include"Unit_algorithm.h"
 int stagestep;
-Player player = { 50, INIT_TRAP_SEED, INIT_BARRICADE_SEED, INIT_GOLD, 0, NEXUS_XPOS, NEXUS_YPOS };
+extern Player player
 
 Unit UnitSpawn() { //적 유닛 생성함수, //스테이지 정보를 받아와야 한다.
     //보스 스테이지가 5의배수 스테이지에 생성 단 한마리만

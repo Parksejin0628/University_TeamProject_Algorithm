@@ -1,4 +1,13 @@
 #pragma once
 #include"ProgramBase.h"
+#include"Unit_algorithm.h"
+#include"PrintManager.h"
+#define FIELD_WIDTH 25
+#define FIELD_HEIGHT 25
+#define FIELD_POSITION_X 0
+#define FIELD_POSITION_Y 2
 
-char inputManager();
+int InputManager();
+void PlayInGame();
+void InitGame();
+

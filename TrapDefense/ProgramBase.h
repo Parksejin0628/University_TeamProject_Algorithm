@@ -58,6 +58,11 @@ typedef enum {
     NEXUS//본진 모양
 } Shape;
 
+typedef enum  {
+    NONE = 0,
+    /* 구조물 */ BLOCK, TRAP_TEAR1, TRAP_TEAR2, TRAP_TEAR3, TRAP_TEAR4, BASE,
+    /* 적 */ ENEMY, BOSS
+}Type;
 
 typedef struct Trap {
     bool isExist;//트랩 존재하는지 안하는지
@@ -78,10 +83,17 @@ typedef struct Unit {
     bool isBoss;
 }Unit;
 
-typedef struct Field {
+typedef struct Field
+{
+    Type type;
     Trap trap;
-    Unit enemy;
-    int map;
+    Unit unit;
+    int direction;
+    int X;
+    int Y;
+    int nextX;
+    int nextY;
+    int moveCount;
 }Field;
 
 typedef struct MapPositionType
