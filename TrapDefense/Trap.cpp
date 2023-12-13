@@ -1,21 +1,21 @@
 ﻿#include"Trap.h"
 
-Trap InitTrap(int xpos, int ypos) { //신호에 맞는 트랩 생성 ,//생성후 playerSeed를 TRAP_SET_UP_SEED만큼 감소
+Trap InitTrap(int xpos, int ypos) { //신호에 맞는 트랩 생성 ,//생성후 playerSeed를 TRAP_SET_UP_SEED만큼 감소//플레이어 한테 입력 좌표 입력받기
     int trapSignal = TrapSignal();
     player.TrapSeed--;//Trap Seed 감소
     Trap trap;
     switch (trapSignal) {
     case 1:
-        trap = { true, CIRCLE_TRAP_DAMAGE, 1,(int)(CIRCLE_TRAP_DAMAGE *1.3),xpos, ypos,CIRCLE};
+        trap = { true, CIRCLE_TRAP_DAMAGE,1, 1,(int)(CIRCLE_TRAP_DAMAGE *1.3),xpos, ypos};
         break;
     case 2:
-        trap = { true, TRIANGLE_TRAP_DAMAGE, 1,(int)(TRIANGLE_TRAP_DAMAGE *1.3),xpos, ypos,TRIANGLE };
+        trap = { true, TRIANGLE_TRAP_DAMAGE,2, 1,(int)(TRIANGLE_TRAP_DAMAGE *1.3),xpos, ypos};
         break;
     case 3:
-        trap = { true, DIAMOND_TRAP_DAMAGE, 1,(int)(DIAMOND_TRAP_DAMAGE * 1.3), xpos, ypos,DIAMOND };
+        trap = { true, DIAMOND_TRAP_DAMAGE,3, 1,(int)(DIAMOND_TRAP_DAMAGE * 1.3), xpos, ypos };
         break;
     case 4:
-        trap = { true,  STAR_TRAP_DAMAGE, 1,(int)(STAR_TRAP_DAMAGE * 1.3), xpos, ypos,STAR };
+        trap = { true,  STAR_TRAP_DAMAGE,4, 1,(int)(STAR_TRAP_DAMAGE * 1.3), xpos, ypos };
     }
     return trap;
 }

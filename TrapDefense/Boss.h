@@ -1,6 +1,7 @@
 #pragma once
-
+#include"ProgramBase.h"
 #include "BFS.h"
+#include "Queue.h"
 
 int min(int a, int b);
 

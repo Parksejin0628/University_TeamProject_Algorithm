@@ -52,6 +52,7 @@ int bag_zeroone(int n, int M, int **bag, Trap trap[], bool* selectedTraps)
     }
     return bag[n][M];
 }
+
 /*
 int main(void)
 {
@@ -83,5 +84,4 @@ int main(void)
 
     return 0;
 }
-
 */

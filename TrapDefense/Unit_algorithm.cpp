@@ -1,21 +1,16 @@
 ﻿#pragma once
 #include"Unit_algorithm.h"
+int stagestep;
+Player player = { 50, INIT_TRAP_SEED, INIT_BARRICADE_SEED, INIT_GOLD, 0, NEXUS_XPOS, NEXUS_YPOS };
 
 Unit UnitSpawn() { //적 유닛 생성함수, //스테이지 정보를 받아와야 한다.
     //보스 스테이지가 5의배수 스테이지에 생성 단 한마리만
     if (stagestep%5==0) {
-        Unit boss;
-        boss.shape = Diamond;
-        boss.HP = ENEMY_HP + stagestep;//보스 스테이지 마다 체력 5씩 증가
-        boss.isActive = true;
-        boss.isBoss = true;
-        boss.xpos = ENEMY_SPAWN_XPOS;
-        boss.ypos = ENEMY_SPAWN_YPOS;
+        Unit boss = { ENEMY_HP + stagestep,ENEMY_SPAWN_XPOS, ENEMY_SPAWN_YPOS,true,true };
         return boss;
     }
     else {
-        Unit enemy;
-        enemy.shape = Circle;
+        Unit enemy = {};
         enemy.HP = ENEMY_HP + stagestep - 1;
         enemy.isActive = true;
         enemy.isBoss = false;
@@ -24,12 +19,23 @@ Unit UnitSpawn() { //적 유닛 생성함수, //스테이지 정보를 받아와
         return enemy;
     } 
 }
-void UnitMove() {
-    //BFS(경로 찾고)
-    //Field의 [x][y]에서 
-    //MapPosition curPos
-    //MapPosition nextPos
-    //nextPos.x
+void UnitMove(Field maze[WIDTH][HEIGHT], MapPosition* start, MapPosition* end) {
+    Unit temperature;
+    start->x = ENEMY_SPAWN_XPOS;
+    start->y = ENEMY_SPAWN_YPOS;
+
+    end->x = NEXUS_XPOS;
+    end->y = NEXUS_YPOS;
+
+    MapPosition path = findPath(maze, *start, *end);
+
+    while (path.x != end->x && path.y != end->y) {
+        temperature = maze[path.x][path.y].enemy;
+        maze[path.x][path.y].enemy = maze[start->x][start->y].enemy;
+        maze[start->x][start->y].enemy = temperature;
+        start->x = path.x;
+        start->y = path.y;
+    }
 }
 
 bool isCrashWithPlayer(Unit*enemy,Player* player) { //적과 Goal 충돌

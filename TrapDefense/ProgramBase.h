@@ -22,8 +22,6 @@
 #define NEXUS_XPOS -20
 #define NEXUS_YPOS -20
 
-//스테이지 정보
-int stagestep = 1;
 //스테이지는 아마 GameManager에서 건드릴것 같습니다.
 //-----------------------------------------//
 // GameManager에서 쓸 것들?
@@ -45,6 +43,10 @@ int stagestep = 1;
 //적 최대 숫자
 #define MAX_ENEMY 100
 
+#define NUM_DIRECTIONS 4
+#define HEIGHT 30
+#define WIDTH 30
+#define INF 999999
 typedef enum {
     WALL,
     CIRCLE,//함정모양
@@ -52,6 +54,42 @@ typedef enum {
     DIAMOND,
     STAR,
     DOUBLEDIAMOND,//보스 모양
-    SQUARE//적 모양
+    SQUARE,//적 모양
+    NEXUS//본진 모양
 } Shape;
+
+
+typedef struct Trap {
+    bool isExist;//트랩 존재하는지 안하는지
+    int damage;//트랩 데미지
+    int value; //트랩 밸류
+    int upgrade;//업그레이드 정보
+    int upgraseCost;//업그레이드 비용
+    int xpos; //트랩 좌표
+    int ypos;
+    Shape shape;
+}Trap;
+
+typedef struct Unit {
+    int HP;
+    int xpos;
+    int ypos;
+    bool isActive;
+    bool isBoss;
+}Unit;
+
+typedef struct Field {
+    Trap trap;
+    Unit enemy;
+    int map;
+}Field;
+
+typedef struct MapPositionType
+{
+    int x;
+    int y;
+    int direction;
+} MapPosition;
+
+
 #pragma warning(disable:4996)

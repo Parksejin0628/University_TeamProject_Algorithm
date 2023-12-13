@@ -1,5 +1,4 @@
 #include "Boss.h"
-#include "Queue.h"
 
 int min(int a, int b) 
 {
