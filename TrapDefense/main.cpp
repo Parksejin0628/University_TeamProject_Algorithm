@@ -5,8 +5,7 @@
 
 int main(void)
 {
-	InitGame();
-	UpdateScreen();
+	PlayInGame();
 
 	return 0;
 }

@@ -47,6 +47,14 @@
 #define HEIGHT 30
 #define WIDTH 30
 #define INF 999999
+//화면 관련 변수
+#define MIN_CURSOR_Y 3 //최대로 올릴 수 있는 커서 y좌표
+#define MAX_CURSOR_Y 24 //최대로 내릴 수 있는 커서 y좌표
+
+//입력 관련 변수
+#define VK_Q 0x51
+#define VK_W 0x57
+
 typedef enum {
     WALL,
     CIRCLE,//함정모양
@@ -55,7 +63,8 @@ typedef enum {
     STAR,
     DOUBLEDIAMOND,//보스 모양
     SQUARE,//적 모양
-    NEXUS//본진 모양
+    NEXUS,//본진 모양
+    UNFILLEDSQUARE // 속이 빈 사각형, □
 } Shape;
 
 typedef enum  {
@@ -102,6 +111,19 @@ typedef struct MapPositionType
     int y;
     int direction;
 } MapPosition;
+
+typedef struct Player {
+    int HP;
+    int TrapSeed;//트랩 시드
+    int BarricadeSeed;//바리케이드 시드
+    int Gold;
+    int Score;
+    int PlayerXpos;
+    int PlayerYpos;
+    int stage;
+    int cursorX;
+    int cursorY;
+}Player;
 
 
 #pragma warning(disable:4996)

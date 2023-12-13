@@ -2,15 +2,7 @@
 #include"ProgramBase.h"
 #include"BFS.h"
 //플레이어 정보
-typedef struct Player {
-    int HP;
-    int TrapSeed;//트랩 시드
-    int BarricadeSeed;//바리케이드 시드
-    int Gold;
-    int Score;
-    int PlayerXpos;
-    int PlayerYpos;
-}Player;
+
 
 extern Player player;
 
