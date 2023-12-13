@@ -1,100 +1,77 @@
 ﻿#pragma once
 #include"Unit_algorithm.h"
 
-Trap InitTrap() { //신호에 맞는 트랩 생성
-    int trapSignal = TrapSignal();
-    Trap trap;
-    switch (trapSignal) {
-    case 1:
-        trap = { TRIANGLE_TRAP_DAMAGE ,TRIANGLE };
-        break;
-    case 2:
-        trap = { RECTANGLE_TRAP_DAMAGE,RECTANGLE };
-        break;
-    case 3:
-        trap = { HEXAGON_TRAP_DAMAGE,HEXAGON };
-        break;
-    case 4:
-        trap = { STAR_TRAP_DAMAGE,STAR };
-    }
-    return trap;
-}
-Enemy EnemySpawn() { //적 유닛 생성함수
-    //스폰 위치 지정 필요, 입력이랑 말 맞춰야 되야 겠지?
-    //보스 스테이지가 6 11 16 21 에 생성 only 한마리만
-    if ((stagestep - 1) / 5 >= 1) {
-        Enemy boss;
+Unit UnitSpawn() { //적 유닛 생성함수, //스테이지 정보를 받아와야 한다.
+    //보스 스테이지가 5의배수 스테이지에 생성 단 한마리만
+    if (stagestep%5==0) {
+        Unit boss;
         boss.shape = Diamond;
-        boss.HP = (ENEMY_HP + stagestep - 1) * 2;
+        boss.HP = ENEMY_HP + stagestep;//보스 스테이지 마다 체력 5씩 증가
         boss.isActive = true;
         boss.isBoss = true;
+        boss.xpos = ENEMY_SPAWN_XPOS;
+        boss.ypos = ENEMY_SPAWN_YPOS;
         return boss;
     }
     else {
-        for (int i = 0; i < ENEMY_INIT_NUMBER + ((stagestep - 1) / 3) * 5; i++) {
-            Enemy enemy;
-            enemy.shape = Circle;
-            enemy.HP = ENEMY_HP + stagestep - 1;
-            enemy.isActive = true;
-            enemy.isBoss = false;
-            return enemy;
-        }
-    }
-    
+        Unit enemy;
+        enemy.shape = Circle;
+        enemy.HP = ENEMY_HP + stagestep - 1;
+        enemy.isActive = true;
+        enemy.isBoss = false;
+        enemy.xpos = ENEMY_SPAWN_XPOS; //여기서 위치조정
+        enemy.ypos = ENEMY_SPAWN_YPOS;
+        return enemy;
+    } 
 }
-void EnemyMove() { //적 유닛 이동함수
-    //알고리즘 파악해서 방향 설정뒤에 이동 ->input에서 하지 않을까?
+void UnitMove() {
+
 }
 
-bool isCrashWithPlayer(Enemy*enemy,Player* player) { //적과 본진 충돌
-    if ((player->nexus.xpos == enemy->xpos) && (player->nexus.ypos == enemy->ypos))
+bool isCrashWithPlayer(Unit*enemy,Player* player) { //적과 Goal 충돌
+    if ((player->PlayerXpos == enemy->xpos) && (player->PlayerYpos == enemy->ypos))
         return true;
     return false;
 }
 
-void PlayerHPDecrease(Enemy* enemy, Player* player) {
-    if (isCrashWithPlayer(enemy, player))
-        player->HP--;
+void PlayerHPDecrease(Unit* enemy, Player* player) { //1초마다 플레이어 공격하게 설정
+    static time_t attackTime = 0;
+    time_t currentTime = time(NULL);
+    if (currentTime - attackTime >= 1) {
+        if (isCrashWithPlayer(enemy, player))
+            player->HP--;
+        attackTime = currentTime;
+    }
 }
 
-bool isCrashWithTrap(Enemy* enemy, Trap* trap) {//적과 함정 출돌
+bool isCrashWithTrap(Unit* enemy, Trap* trap) {//적과 함정 출돌
     if ((enemy->xpos == trap->xpos) && (enemy->ypos == trap->ypos))
         return true;
     return false;
 }
 
-void EnemyDamage(Enemy* enemy, Trap* trap) {//적 유닛이 함정을 지나가면 데미지를 입는다.
+void UnitDamage(Unit* enemy, Trap* trap) {//적 유닛이 함정을 지나가면 데미지를 입는다.
+    int tempenemyHP = enemy->HP; //enemy의 체력만큼 점수 추가
     if (isCrashWithTrap(enemy, trap)) {
         enemy->HP -= trap->damage;
         if (enemy->HP <= 0) {
             enemy->isActive = false;
-            player.Gold += REWARD_GOLD;
-            SeedReward();
+            if (enemy->isBoss) {
+                player.Gold += 20;
+                player.Score += 10;
+            }
+            else {
+                player.Gold += 3;
+                player.Score += tempenemyHP;
+            }
         }
     }
 }
 
-void TrapUpgrade() {//업그레이드 알고리즘 사용
 
-}
-
-
-void SeedReward() { //확률적으로 Seed 획득이라 임의로 50으로 설정함
-    int randomValue = rand() % 100 + 1;
-
-    if (randomValue <= RANDOM_REWARD_SEED) {
-        player.Seed += REWARD_SEED;
-    }
-}
 
 //int main() {
 //    srand(time(NULL));
 //    Enemy enemies[MAX_ENEMY];
-//    while (/*게임이 돌아가는 동안*/) {
-//        for (int i = 0; i < ENEMY_INIT_NUMBER + ((stagestep - 1) / 3) * 5; i++) {
-//            if (enemies[i].isActive) {
-//            // 렌더링.. 
-//            }
-//        }
-//    }
+//    
 //}
