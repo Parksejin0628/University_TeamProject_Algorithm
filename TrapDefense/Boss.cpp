@@ -20,6 +20,7 @@ void printPath(int path[WIDTH][HEIGHT])
 
 void bossPath(Field field[WIDTH][HEIGHT], int path[WIDTH][HEIGHT])
 {
+	/*
 	int dp[WIDTH][HEIGHT] = {};
 
 	dp[0][0] = field[0][0].map;
@@ -54,6 +55,7 @@ void bossPath(Field field[WIDTH][HEIGHT], int path[WIDTH][HEIGHT])
             } 
         }
     }
+	*/
 }
 
 int is_movable2(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], MapPosition pos)
@@ -70,6 +72,7 @@ int is_movable2(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], MapPositi
 // BFS 후 행렬경로를 이용하여 보스 경로 구하기
 MapPosition findBossPath(Field field[WIDTH][HEIGHT], MapPosition start, MapPosition end)
 {
+	/*
 	Queue queue;
 	MapPosition currPos;
 	MapPosition nextPos={};
@@ -123,5 +126,7 @@ MapPosition findBossPath(Field field[WIDTH][HEIGHT], MapPosition start, MapPosit
 	        }
 		}
 	//도착지점에 도달하지 못한 경우 start 반환
+	return start;
+	*/
 	return start;
 }

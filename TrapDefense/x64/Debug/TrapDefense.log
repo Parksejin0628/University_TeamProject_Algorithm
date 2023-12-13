@@ -1,3 +1,9 @@
-﻿  Upgrade.c
-Upgrade.obj : error LNK2005: main이(가) main.obj에 이미 정의되어 있습니다.
-D:\GitHub\study\University_TeamProject_Algorithm\TrapDefense\x64\Debug\TrapDefense.exe : fatal error LNK1169: 여러 번 정의된 기호가 있습니다.
+﻿  GameManager.cpp
+C:\GitHub\University_TeamProject_Algorithm\TrapDefense\Queue.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  PrintManager.cpp
+C:\GitHub\University_TeamProject_Algorithm\TrapDefense\Queue.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  main.cpp
+C:\GitHub\University_TeamProject_Algorithm\TrapDefense\Queue.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  코드를 생성하고 있습니다...
+GameManager.obj : error LNK2019: "struct Trap __cdecl InitTrap(int,int)" (?InitTrap@@YA?AUTrap@@HH@Z)"void __cdecl PlayInGame(void)" (?PlayInGame@@YAXXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\GitHub\University_TeamProject_Algorithm\TrapDefense\x64\Debug\TrapDefense.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

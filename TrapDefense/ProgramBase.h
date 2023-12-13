@@ -37,7 +37,7 @@
 #define ENEMY_INIT_NUMBER 10 //적 초기 숫자
 
 //적 스폰 위치
-#define ENEMY_SPAWN_XPOS 0
+#define ENEMY_SPAWN_XPOS 9
 #define ENEMY_SPAWN_YPOS 0
 
 //적 최대 숫자
@@ -48,8 +48,14 @@
 #define WIDTH 30
 #define INF 999999
 //화면 관련 변수
-#define MIN_CURSOR_Y 3 //최대로 올릴 수 있는 커서 y좌표
-#define MAX_CURSOR_Y 24 //최대로 내릴 수 있는 커서 y좌표
+#define MIN_CURSOR_Y 5 //최대로 올릴 수 있는 커서 y좌표
+#define MAX_CURSOR_Y 23 //최대로 내릴 수 있는 커서 y좌표
+#define MIN_CURSOR_X 0 //최대로 올릴 수 있는 커서 y좌표
+#define MAX_CURSOR_X 25 //최대로 내릴 수 있는 커서 y좌표
+#define FIELD_WIDTH 25
+#define FIELD_HEIGHT 25
+#define FIELD_POSITION_X 0
+#define FIELD_POSITION_Y 2
 
 //입력 관련 변수
 #define VK_Q 0x51

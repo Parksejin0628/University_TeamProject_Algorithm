@@ -1,7 +1,7 @@
 #include "BFS.h"
 #include "Queue.h"
 
-int is_movable(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], Field pos)
+int is_movable(Field maze[FIELD_HEIGHT][FIELD_WIDTH], int visited[FIELD_HEIGHT][FIELD_WIDTH], Field pos)
 {
 	// 현재 위치가 미로의 범위를 벗어나는 지 확인
 	if (pos.X < 0 || pos.Y < 0 || pos.X >= WIDTH || pos.Y >= HEIGHT)
@@ -13,7 +13,7 @@ int is_movable(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], Field pos)
 }
 
 // BFS 
-Field findPath(Field map[WIDTH][HEIGHT], Field start, Field end)
+Field findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
 {
 	static int DIRECTION_OFFSETS[NUM_DIRECTIONS][2] = {
 	{0, -1},		// 0 (상)
@@ -24,8 +24,10 @@ Field findPath(Field map[WIDTH][HEIGHT], Field start, Field end)
 
 	Queue queue;
 	Field currPos;
-	Field nextPos;
-	int visited[WIDTH][HEIGHT] = { NOT_VISIT, };
+	Field nextPos;	
+	int nextX;
+	int nextY;
+	int visited[FIELD_HEIGHT][FIELD_WIDTH] = { NOT_VISIT, };
 
 	enqueue(&queue, start); // 처음 시작 위치를 큐에 넣기
 	while (!isEmpty(&queue))

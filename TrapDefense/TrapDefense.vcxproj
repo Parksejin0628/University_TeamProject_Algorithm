@@ -130,8 +130,8 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrintManager.cpp" />
-    <ClCompile Include="Unit_algorithm.c" />
     <ClCompile Include="Upgrade.c" />
+    <ClCompile Include="소스.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h" />

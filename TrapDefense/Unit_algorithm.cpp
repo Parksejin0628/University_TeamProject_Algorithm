@@ -4,7 +4,7 @@
 
 
 
-
+/*
 void UnitMove(Field maze[WIDTH][HEIGHT], MapPosition* start, MapPosition* end) {
     Unit temperature;
     start->x = ENEMY_SPAWN_XPOS;
@@ -23,6 +23,7 @@ void UnitMove(Field maze[WIDTH][HEIGHT], MapPosition* start, MapPosition* end) {
         start->y = path.y;
     }
 }
+*/
 
 bool isCrashWithPlayer(Unit*enemy,Player* player) { //적과 Goal 충돌
     if ((player->PlayerXpos == enemy->xpos) && (player->PlayerYpos == enemy->ypos))
@@ -45,7 +46,7 @@ bool isCrashWithTrap(Unit* enemy, Trap* trap) {//적과 함정 출돌
         return true;
     return false;
 }
-
+/*
 void UnitDamage(Unit* enemy, Trap* trap) {//적 유닛이 함정을 지나가면 데미지를 입는다.
     int tempenemyHP = enemy->HP; //enemy의 체력만큼 점수 추가
     if (isCrashWithTrap(enemy, trap)) {
@@ -63,6 +64,7 @@ void UnitDamage(Unit* enemy, Trap* trap) {//적 유닛이 함정을 지나가면
         }
     }
 }
+*/
 
 
 

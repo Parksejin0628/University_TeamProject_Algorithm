@@ -29,25 +29,25 @@ void PlayInGame()
 			switch (InputManager())
 			{
 			case VK_UP:
-				if (player.cursorY - 1 > MIN_CURSOR_Y && player.cursorY - 1 < MAX_CURSOR_Y)
+				if (player.cursorY - 1 >= MIN_CURSOR_Y && player.cursorY - 1 <= MAX_CURSOR_Y)
 				{
 					player.cursorY--;
 				}
 				break;
 			case VK_DOWN:
-				if (player.cursorY + 1 > MIN_CURSOR_Y && player.cursorY + 1 < MAX_CURSOR_Y)
+				if (player.cursorY + 1 >= MIN_CURSOR_Y && player.cursorY + 1 <= MAX_CURSOR_Y)
 				{
 					player.cursorY++;
 				}
 				break;
 			case VK_LEFT:
-				if (player.cursorX - 1 > MIN_CURSOR_Y && player.cursorX - 1 < MAX_CURSOR_Y)
+				if (player.cursorX - 1 >= MIN_CURSOR_X && player.cursorX - 1 <= MAX_CURSOR_X)
 				{
 					player.cursorX--;
 				}
 				break;
 			case VK_RIGHT:
-				if (player.cursorX + 1 > MIN_CURSOR_Y && player.cursorX + 1 < MAX_CURSOR_Y)
+				if (player.cursorX + 1 >= MIN_CURSOR_X && player.cursorX + 1 <= MAX_CURSOR_X)
 				{
 					player.cursorX++;
 				}
@@ -58,9 +58,18 @@ void PlayInGame()
 				//턴 넘기기
 				break;
 			case VK_Q:
+				if (field[player.cursorY-2][player.cursorX].type == NONE)
+				{
+					field[player.cursorY-2][player.cursorX].type = BLOCK;
+				}
 				//바리게이트 설치
 				break;
 			case VK_W:
+				if (field[player.cursorY-2][player.cursorX].type == NONE)
+				{
+					field[player.cursorY-2][player.cursorX].trap = InitTrap(player.cursorX, player.cursorY-2);
+					field[player.cursorY-2][player.cursorX].type = field[player.cursorY-2][player.cursorX].trap.type;
+				}
 				//타일 설치
 				break;
 			}
@@ -70,6 +79,7 @@ void PlayInGame()
 			if (!defenseStart)
 			{
 				InitRound(++player.stage);
+				
 				defenseStart = true;
 			}
 			if (clock() - frameStart > FRAMETIME)
@@ -125,6 +135,8 @@ void InitGame()
 		for (int x = 0; x < FIELD_WIDTH; x++)
 		{
 			field[y][x].type = NONE;
+			field[y][x].X = x;
+			field[y][x].Y = y;
 		}
 	}
 	field[0][8].type = BLOCK;
@@ -231,7 +243,7 @@ int InputManager()
 		{
 			keydown_space = false;
 		}
-		if (GetAsyncKeyState(VK_Q) && keydown_space == false)
+		if (GetAsyncKeyState(VK_Q) && keydown_q == false)
 		{
 			keydown_q = true;
 			return VK_Q;
@@ -240,7 +252,7 @@ int InputManager()
 		{
 			keydown_q = false;
 		}
-		if (GetAsyncKeyState(VK_W) && keydown_space == false)
+		if (GetAsyncKeyState(VK_W) && keydown_w == false)
 		{
 			keydown_w = true;
 			return VK_W;
@@ -254,11 +266,18 @@ int InputManager()
 
 void InitRound(int stage)
 {
+
 	player.stage = stage;
-	player.maxUnitCount = ENEMY_INIT_NUMBER + stage / 3;
+	
 	if (stage % 5 == 0)
 	{
-		player.maxUnitCount = 0;
+		player.maxUnitCount = 1;
+		//보스경로 넣어줘..
+	}
+	else
+	{
+		player.maxUnitCount = ENEMY_INIT_NUMBER + stage / 3;
+		findPath(field, field[0][9], field[24][12]);
 	}
 	player.nowUnitCount = 0;
 	player.deadUnitCount = 0;

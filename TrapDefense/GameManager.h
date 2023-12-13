@@ -2,11 +2,11 @@
 #include"ProgramBase.h"
 #include"Unit_algorithm.h"
 #include"PrintManager.h"
+#include"Trap.h"
+#include"Queue.h"
+#include"BFS.h"
 
-#define FIELD_WIDTH 25
-#define FIELD_HEIGHT 25
-#define FIELD_POSITION_X 0
-#define FIELD_POSITION_Y 2
+
 
 int InputManager();
 void PlayInGame();
