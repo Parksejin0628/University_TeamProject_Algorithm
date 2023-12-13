@@ -40,8 +40,8 @@ Field findPath(Field map[WIDTH][HEIGHT], Field start, Field end)
 		while (currPos.direction < NUM_DIRECTIONS)
 		{
 			// 다음 좌표 설정
-			currPos.nextX = currPos.X + DIRECTION_OFFSETS[currPos.direction][0];
-			currPos.nextY = currPos.Y + DIRECTION_OFFSETS[currPos.direction][1];
+			nextX = currPos.X + DIRECTION_OFFSETS[currPos.direction][0];
+			nextY = currPos.Y + DIRECTION_OFFSETS[currPos.direction][1];
 			nextPos.X = currPos.nextX;
 			nextPos.Y = currPos.nextY;
 			nextPos.direction = 0;
