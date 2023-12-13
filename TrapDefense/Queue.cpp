@@ -14,7 +14,7 @@ int isEmpty(Queue *queue)
   return queue->count == 0;  // 큐안의 노드 개수가 0이면 빈 상태
 }
  
-void enqueue(Queue *queue, MapPosition data)
+void enqueue(Queue *queue, Field data)
 {
   Node *newNode = (Node *)malloc(sizeof(Node)); // newNode 생성
   newNode->data = data;
@@ -32,10 +32,10 @@ void enqueue(Queue *queue, MapPosition data)
   queue->count++;  //큐안의 노드 개수를 1 증가
 }
 
-MapPosition dequeue(Queue *queue)
+Field dequeue(Queue *queue)
 {
-  MapPosition data;
-  MapPosition empty;
+  Field data;
+  Field empty;
   Node *ptr;
   if (isEmpty(queue))  //큐가 비었을 때
   {

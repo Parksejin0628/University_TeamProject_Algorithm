@@ -3,7 +3,7 @@
 
 typedef struct Node 
 {
-  MapPositionType data;
+  Field data;
   struct Node *next;
 }Node;
 
@@ -18,6 +18,6 @@ void initQueue(Queue *queue) {}
 
 int isEmpty(Queue *queue) {}
  
-void enqueue(Queue *queue, MapPosition data) {}
+void enqueue(Queue *queue, Field data) {}
 
-MapPosition dequeue(Queue *queue) {}
+Field dequeue(Queue *queue) {}
