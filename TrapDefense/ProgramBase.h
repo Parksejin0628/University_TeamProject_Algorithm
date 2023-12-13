@@ -29,9 +29,9 @@ int stagestep = 1;
 // GameManager에서 쓸 것들?
 
 //함정 기본 데미지
-#define TRIANGLE_TRAP_DAMAGE 3
-#define SQUARE_TRAP_DAMAGE 4
-#define HEXAGON_TRAP_DAMAGE 6
+#define CIRCLE_TRAP_DAMAGE 3
+#define TRIANGLE_TRAP_DAMAGE 4
+#define DIAMOND_TRAP_DAMAGE 6
 #define STAR_TRAP_DAMAGE 10
 
 //적 체력 관련
@@ -47,11 +47,11 @@ int stagestep = 1;
 
 typedef enum {
     WALL,
+    CIRCLE,//함정모양
     TRIANGLE,
-    SQUARE,
-    HEXAGON,
+    DIAMOND,
     STAR,
-    Circle,//적
-    Diamond //보스
+    DOUBLEDIAMOND,//보스 모양
+    SQUARE//적 모양
 } Shape;
 #pragma warning(disable:4996)

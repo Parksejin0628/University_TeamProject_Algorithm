@@ -25,7 +25,11 @@ Unit UnitSpawn() { //적 유닛 생성함수, //스테이지 정보를 받아와
     } 
 }
 void UnitMove() {
-
+    //BFS(경로 찾고)
+    //Field의 [x][y]에서 
+    //MapPosition curPos
+    //MapPosition nextPos
+    //nextPos.x
 }
 
 bool isCrashWithPlayer(Unit*enemy,Player* player) { //적과 Goal 충돌

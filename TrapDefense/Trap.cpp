@@ -6,13 +6,13 @@ Trap InitTrap(int xpos, int ypos) { //신호에 맞는 트랩 생성 ,//생성�
     Trap trap;
     switch (trapSignal) {
     case 1:
-        trap = { true, TRIANGLE_TRAP_DAMAGE, 1,(int)(TRIANGLE_TRAP_DAMAGE*1.3),xpos, ypos,TRIANGLE};
+        trap = { true, CIRCLE_TRAP_DAMAGE, 1,(int)(CIRCLE_TRAP_DAMAGE *1.3),xpos, ypos,CIRCLE};
         break;
     case 2:
-        trap = { true, SQUARE_TRAP_DAMAGE, 1,(int)(SQUARE_TRAP_DAMAGE*1.3),xpos, ypos,SQUARE };
+        trap = { true, TRIANGLE_TRAP_DAMAGE, 1,(int)(TRIANGLE_TRAP_DAMAGE *1.3),xpos, ypos,TRIANGLE };
         break;
     case 3:
-        trap = { true, HEXAGON_TRAP_DAMAGE, 1,(int)(HEXAGON_TRAP_DAMAGE * 1.3), xpos, ypos,HEXAGON };
+        trap = { true, DIAMOND_TRAP_DAMAGE, 1,(int)(DIAMOND_TRAP_DAMAGE * 1.3), xpos, ypos,DIAMOND };
         break;
     case 4:
         trap = { true,  STAR_TRAP_DAMAGE, 1,(int)(STAR_TRAP_DAMAGE * 1.3), xpos, ypos,STAR };
