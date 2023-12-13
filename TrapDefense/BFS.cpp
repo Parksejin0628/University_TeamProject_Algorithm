@@ -22,6 +22,29 @@ Field findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
 	{-1, 0}			// 3 (좌)
 	};
 
+	for (int i = 0; i < FIELD_WIDTH; i++)
+	{
+		for (int j = 0; j < FIELD_HEIGHT; j++)
+		{
+			map[i][j].nextX = 0;
+			map[i][j].nextY = 0;
+			map[i][j].direction = 0;
+
+			for (int i = 0; i < FIELD_WIDTH; i++)
+			{
+				for (int j = 0; j < FIELD_HEIGHT; j++)
+				{
+					map[i][j].nextX = 0;
+					map[i][j].nextY = 0;
+					map[i][j].direction = 0;
+				}
+			}
+
+
+
+
+		}
+	}
 	Queue queue;
 	Field currPos;
 	Field nextPos;	

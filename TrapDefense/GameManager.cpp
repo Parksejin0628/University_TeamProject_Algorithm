@@ -272,7 +272,7 @@ void InitRound(int stage)
 	if (stage % 5 == 0)
 	{
 		player.maxUnitCount = 1;
-		//보스경로 넣어줘..
+		findBossPath(field, field[0][9], field[24][12]);
 	}
 	else
 	{
