@@ -53,7 +53,7 @@ void findBossPath(Field map[FIELD_WIDTH][FIELD_HEIGHT], Field start, Field end)
 	{
 		currPos = popPQ(PQF, PQI, &rear);
 
-		if ((currPos.X = end.X) && (currPos.Y == end.Y)) // 도착 지점에 도달한 경우
+		if ((currPos.X == end.X) && (currPos.Y == end.Y)) // 도착 지점에 도달한 경우
 		{
 			return;
 		}
@@ -79,21 +79,21 @@ void findBossPath(Field map[FIELD_WIDTH][FIELD_HEIGHT], Field start, Field end)
 			{
 				if (map[nextX][nextY].trap.isExist == true)
 				{
-					if (distances[nextX][nextY] > distances[nextX][nextY] + map[nextX][nextY].trap.damage)
+					if (distances[nextX][nextY] > distances[currPos.X][currPos.Y] + map[nextX][nextY].trap.damage)
 					{
-						distances[nextX][nextY] = distances[nextX][nextY] + map[nextX][nextY].trap.damage;
+						distances[nextX][nextY] = distances[currPos.X][currPos.Y] + map[nextX][nextY].trap.damage;
 						map[currPos.X][currPos.Y].nextX = nextX;
-						map[currPos.Y][currPos.Y].nextY = nextY;
+						map[currPos.X][currPos.Y].nextY = nextY;
 						enPQ(PQF, PQI, distances[nextX][nextY], map[nextX][nextY], &rear);
 					}
 				}
 				else if (map[nextX][nextY].trap.isExist == false)
 				{
-					if (distances[nextX][nextY] > distances[nextX][nextY] + 1)
+					if (distances[nextX][nextY] > distances[currPos.X][currPos.Y] + 1)
 					{
-						distances[nextX][nextY] = distances[nextX][nextY] + 1;
+						distances[nextX][nextY] = distances[currPos.X][currPos.Y] + 1;
 						map[currPos.X][currPos.Y].nextX = nextX;
-						map[currPos.Y][currPos.Y].nextY = nextY;
+						map[currPos.X][currPos.Y].nextY = nextY;
 						enPQ(PQF, PQI, distances[nextX][nextY], map[nextX][nextY], &rear);
 					}
 				}

@@ -13,7 +13,7 @@ int is_movable(Field maze[FIELD_HEIGHT][FIELD_WIDTH], int visited[FIELD_HEIGHT][
 }
 
 // BFS 
-Field findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
+void findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
 {
 	static int DIRECTION_OFFSETS[NUM_DIRECTIONS][2] = {
 	{0, -1},		// 0 (상)
@@ -43,8 +43,8 @@ Field findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
 	while (!isEmpty(&queue))
 	{
 		currPos = dequeue(&queue); // 큐에서 꺼내기
-		if ((currPos.X = end.X) && (currPos.Y == end.Y)) 			// 도착 지점에 도달한 경우
-			return currPos;
+		if ((currPos.X == end.X) && (currPos.Y == end.Y)) 			// 도착 지점에 도달한 경우
+			return;
 		if (visited[currPos.X][currPos.Y] == VISIT) 	// 현재 위치를 방문했는지 확인
 			continue;
 		visited[currPos.X][currPos.Y] = VISIT; // 현재 위치를 VISIT 으로 변경
@@ -60,18 +60,17 @@ Field findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
 			if (is_movable(map, visited, nextPos))
 			{
 				// 다음 이동 지점에 이전 이동 거리 + 1 저장
-				map[currPos.nextX][currPos.nextY].moveCount = map[currPos.X][currPos.Y].moveCount + 1;
+				map[nextX][nextY].moveCount = map[currPos.X][currPos.Y].moveCount + 1;
 
 				// 다음 이동 지점을 맵의 nextX, nextY에 저장
-				map[currPos.X][currPos.Y].nextX = currPos.nextX;
-				map[currPos.X][currPos.Y].nextY = currPos.nextY;
+				map[currPos.X][currPos.Y].nextX = nextX;
+				map[currPos.X][currPos.Y].nextY = nextY;
 
 				enqueue(&queue, nextPos); // 다음 이동 지점 큐에 저장
 			}
 			currPos.direction += 1;
 		}
 	}
-	//도착지점에 도달하지 못한 경우 start 반환
-	return start;
+	return;
 }
 
