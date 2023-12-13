@@ -3,10 +3,17 @@
 Field field[FIELD_HEIGHT][FIELD_WIDTH];
 Player player;
 bool isBuildTurn = true;
+Unit unitQueue[MAX_ENEMY];
+int frontIndex = -1;
+int rearIndex = -1;
 
 void PlayInGame()
 {
-	int temp = 0;
+	bool defenseStart = false;
+	double frameStart = clock();
+	int X = 0;
+	int Y = 0;
+	Unit nowUnit;
 
 	InitGame();
 	
@@ -47,6 +54,7 @@ void PlayInGame()
 				break;
 			case VK_SPACE:
 				isBuildTurn = false;
+				defenseStart = false;
 				//턴 넘기기
 				break;
 			case VK_Q:
@@ -59,7 +67,40 @@ void PlayInGame()
 		}
 		else
 		{
-
+			if (!defenseStart)
+			{
+				InitRound(++player.stage);
+				defenseStart = true;
+			}
+			if (clock() - frameStart > FRAMETIME)
+			{
+				for (int i = frontIndex; i > rearIndex; i--)
+				{
+					nowUnit = unitQueue[i % MAX_ENEMY];
+					X = nowUnit.xpos;
+					Y = nowUnit.ypos;
+					field[Y + field[Y][X].nextY][X + field[Y][X].nextX].unit = nowUnit;
+					nowUnit.xpos = X + field[Y][X].nextX;
+					nowUnit.ypos = Y + field[Y][X].nextY;
+					if (field[Y][X].trap.isExist == true)
+					{
+						field[Y][X].type = field[Y][X].trap.type;
+					}
+					else
+					{
+						field[Y][X].type = NONE;
+					}
+					field[Y + field[Y][X].nextY][X + field[Y][X].nextX].type = ENEMY;
+				}
+				if (player.nowUnitCount < player.maxUnitCount)
+				{
+					player.nowUnitCount++;
+					unitQueue[++frontIndex % MAX_ENEMY] = UnitSpawn(player.stage);
+					X = unitQueue[frontIndex % MAX_ENEMY].xpos;
+					Y = unitQueue[frontIndex % MAX_ENEMY].ypos;
+					field[X][Y].unit = unitQueue[frontIndex % MAX_ENEMY];
+				}
+			}
 		}
 	}
 		
@@ -75,7 +116,7 @@ void InitGame()
 	player.Score = 0;
 	player.PlayerXpos = NEXUS_XPOS;
 	player.PlayerYpos = NEXUS_YPOS;
-	player.stage = 1;
+	player.stage = 0;
 	player.cursorX = 10;
 	player.cursorY = 10;
 
@@ -209,4 +250,33 @@ int InputManager()
 			keydown_w = false;
 		}
 	}
+}
+
+void InitRound(int stage)
+{
+	player.stage = stage;
+	player.maxUnitCount = ENEMY_INIT_NUMBER + stage / 3;
+	if (stage % 5 == 0)
+	{
+		player.maxUnitCount = 0;
+	}
+	player.nowUnitCount = 0;
+	player.deadUnitCount = 0;
+}
+
+Unit UnitSpawn(int stagestep) { //적 유닛 생성함수, //스테이지 정보를 받아와야 한다.
+    //보스 스테이지가 5의배수 스테이지에 생성 단 한마리만
+    if (stagestep%5==0) {
+        Unit boss = { ENEMY_HP + stagestep,ENEMY_SPAWN_XPOS, ENEMY_SPAWN_YPOS,true,true };
+        return boss;
+    }
+    else {
+        Unit enemy = {};
+        enemy.HP = ENEMY_HP + stagestep - 1;
+        enemy.isActive = true;
+        enemy.isBoss = false;
+        enemy.xpos = ENEMY_SPAWN_XPOS; //여기서 위치조정
+        enemy.ypos = ENEMY_SPAWN_YPOS;
+        return enemy;
+    } 
 }

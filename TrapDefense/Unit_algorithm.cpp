@@ -1,24 +1,10 @@
-﻿#pragma once
-#include"Unit_algorithm.h"
-int stagestep;
-extern Player player
+﻿#include"Unit_algorithm.h"
 
-Unit UnitSpawn() { //적 유닛 생성함수, //스테이지 정보를 받아와야 한다.
-    //보스 스테이지가 5의배수 스테이지에 생성 단 한마리만
-    if (stagestep%5==0) {
-        Unit boss = { ENEMY_HP + stagestep,ENEMY_SPAWN_XPOS, ENEMY_SPAWN_YPOS,true,true };
-        return boss;
-    }
-    else {
-        Unit enemy = {};
-        enemy.HP = ENEMY_HP + stagestep - 1;
-        enemy.isActive = true;
-        enemy.isBoss = false;
-        enemy.xpos = ENEMY_SPAWN_XPOS; //여기서 위치조정
-        enemy.ypos = ENEMY_SPAWN_YPOS;
-        return enemy;
-    } 
-}
+//extern Player player;
+
+
+
+
 void UnitMove(Field maze[WIDTH][HEIGHT], MapPosition* start, MapPosition* end) {
     Unit temperature;
     start->x = ENEMY_SPAWN_XPOS;

@@ -54,6 +54,9 @@
 //입력 관련 변수
 #define VK_Q 0x51
 #define VK_W 0x57
+//프레임 관련 변수
+#define FRAMETIME 0.1
+
 
 typedef enum {
     WALL,
@@ -74,6 +77,7 @@ typedef enum  {
 }Type;
 
 typedef struct Trap {
+    Type type;
     bool isExist;//트랩 존재하는지 안하는지
     int damage;//트랩 데미지
     int value; //트랩 밸류
@@ -123,6 +127,9 @@ typedef struct Player {
     int stage;
     int cursorX;
     int cursorY;
+    int nowUnitCount;
+    int maxUnitCount;
+    int deadUnitCount;
 }Player;
 
 

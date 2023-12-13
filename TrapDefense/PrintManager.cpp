@@ -2,7 +2,7 @@
 #include"PrintManager.h"
 
 extern Field field[FIELD_HEIGHT][FIELD_WIDTH];
-extern Player;
+extern Player player;
 
 
 void SetColor(unsigned short color)
