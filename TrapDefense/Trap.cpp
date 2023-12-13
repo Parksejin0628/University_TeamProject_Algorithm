@@ -32,13 +32,13 @@ int TrapSignal() { //기획안 참고하여 확률에 따른 함정 설치
         return 4;
 }
 void TrapUpgrade(Trap* trap) { // 0 1 배낭 알고리즘 적용 안한거
-    if (player.Gold<(int)(trap->upgraseCost)) { //플레이어가 가진 골드의 수가 필요한 골드의 양보다 작으면
+    if (player.Gold<(int)(trap->upgradeCost)) { //플레이어가 가진 골드의 수가 필요한 골드의 양보다 작으면
         fprintf(stderr, "골드가 부족합니다.");
     }
     else {
-        player.Gold -= (int)(trap->upgraseCost);
+        player.Gold -= (int)(trap->upgradeCost);
         trap->upgrade++;
         trap->damage = (int)(trap->damage * 1.3);
-        trap->upgraseCost = (int)(trap->upgraseCost * 1.3);
+        trap->upgradeCost = (int)(trap->upgradeCost * 1.3);
     }
 }

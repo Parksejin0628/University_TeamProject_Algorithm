@@ -64,7 +64,7 @@ typedef struct Trap {
     int damage;//트랩 데미지
     int value; //트랩 밸류
     int upgrade;//업그레이드 정보
-    int upgraseCost;//업그레이드 비용
+    int upgradeCost;//업그레이드 비용
     int xpos; //트랩 좌표
     int ypos;
     Shape shape;

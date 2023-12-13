@@ -1,10 +1,5 @@
 #include "Boss.h"
 
-int min(int a, int b) 
-{
-    return (a < b) ? a : b;
-}
-
 //구한 경로를 (2, 2) (1, 2) (0, 2)처럼 출력하는 함수
 //아직 경로 반환을 어떻게 할지 고민중이라서 임시로 넣어둠
 void printPath(int path[WIDTH][HEIGHT])
@@ -25,7 +20,7 @@ void printPath(int path[WIDTH][HEIGHT])
 
 void bossPath(Field field[WIDTH][HEIGHT], int path[WIDTH][HEIGHT])
 {
-	int dp[WIDTH][HEIGHT];
+	int dp[WIDTH][HEIGHT] = {};
 
 	dp[0][0] = field[0][0].map;
 	path[0][0] = -1; //시작위치 표시
@@ -61,7 +56,7 @@ void bossPath(Field field[WIDTH][HEIGHT], int path[WIDTH][HEIGHT])
     }
 }
 
-int is_movable(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], MapPosition pos)
+int is_movable2(Field maze[WIDTH][HEIGHT], int visited[WIDTH][HEIGHT], MapPosition pos)
 {
 	// 현재 위치가 미로의 범위를 벗어나는 지 확인
   if (pos.x < 0 || pos.y < 0 || pos.x >= WIDTH || pos.y >= HEIGHT)
@@ -77,7 +72,7 @@ MapPosition findBossPath(Field field[WIDTH][HEIGHT], MapPosition start, MapPosit
 {
 	Queue queue;
 	MapPosition currPos;
-    MapPosition nextPos;
+	MapPosition nextPos={};
     int nextX;
     int nextY;
 	int path[WIDTH][HEIGHT];
@@ -118,7 +113,7 @@ MapPosition findBossPath(Field field[WIDTH][HEIGHT], MapPosition start, MapPosit
 	    		nextPos.x = nextX;
 	        	nextPos.y = nextY;
 	        	nextPos.direction = 0;
-	        	if(is_movable(field, visited, nextPos))
+	        	if(is_movable2(field, visited, nextPos))
 				{
 					// 다음 이동 지점에 이전 이동 거리 + 1 저장
 					field[nextX][nextY].map = field[currPos.x][currPos.y].map + 1; 

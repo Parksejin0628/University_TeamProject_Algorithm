@@ -1,5 +1,4 @@
-﻿#include"ProgramBase.h"
-#include"Upgrade.h"
+﻿#include"Upgrade.h"
 
 //함정 업그레이드시 사용하는 가격 정보 (값은 예시)
 info_up_cost[5][5] = { {10, 20, 30, 40, 50},
@@ -29,13 +28,13 @@ int bag_zeroone(int n, int M, int **bag, Trap trap[], bool* selectedTraps)
             {
                 bag[i][w] = 0;
             }
-            else if (w < trap[i].up_cost)
+            else if (w < trap[i].upgradeCost)
             {
                 bag[i][w] = bag[i - 1][w];
             }
             else
             {
-                bag[i][w] = bigger(bag[i - 1][w], bag[i - 1][w - trap[i].up_cost] + trap[i].up_value);
+                bag[i][w] = bigger(bag[i - 1][w], bag[i - 1][w - trap[i].upgradeCost] + trap[i].value);
             }
         }
     }
@@ -46,7 +45,7 @@ int bag_zeroone(int n, int M, int **bag, Trap trap[], bool* selectedTraps)
     while (i > 0 && w > 0) {
         if (bag[i][w] != bag[i - 1][w]) {
             selectedTraps[i - 1] = true; // 해당 아이템이 선택되었음을 표시
-            w -= trap[i - 1].up_cost;
+            w -= trap[i - 1].upgradeCost;
         }
         --i;
     }

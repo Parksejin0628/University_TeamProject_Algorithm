@@ -15,14 +15,6 @@ int bigger(int arr1, int arr2) //큰 수 비교
 #define Circle 5
 
 //Trap구조체로 이루어진 연결리스트로 함정관리하면 좋을듯
-typedef struct Trap {
-    int damage;
-    int xpos;
-    int ypos;
-    int shape;
-    int up_value;
-    int up_cost;
-}Trap;
 
 //함정 업그레이드시 사용하는 가격 정보 (값은 예시)
 int info_up_cost[5][5];
