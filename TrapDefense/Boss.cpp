@@ -18,6 +18,11 @@ void findBossPath(Field map[FIELD_WIDTH][FIELD_HEIGHT], Field start, Field end)
 	int PQI[10000];
 	int rear = 1;
 
+	Field currPos;
+	Field nextPos;
+	int nextX;
+	int nextY;
+
 	for (int i = 0; i < FIELD_WIDTH; i++)
 	{
 		for (int j = 0; j < FIELD_HEIGHT; j++)
@@ -25,18 +30,6 @@ void findBossPath(Field map[FIELD_WIDTH][FIELD_HEIGHT], Field start, Field end)
 			map[i][j].nextX = 0;
 			map[i][j].nextY = 0;
 			map[i][j].direction = 0;
-		}
-	}
-
-	Field currPos;
-	Field nextPos;
-	int nextX;
-	int nextY;
-
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		for (int j = 0; j < HEIGHT; j++)
-		{
 			distances[i][j] = INF;
 		}
 	}

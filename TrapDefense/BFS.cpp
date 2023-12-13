@@ -4,7 +4,7 @@
 int is_movable(Field maze[FIELD_HEIGHT][FIELD_WIDTH], int visited[FIELD_HEIGHT][FIELD_WIDTH], Field pos)
 {
 	// 현재 위치가 미로의 범위를 벗어나는 지 확인
-	if (pos.X < 0 || pos.Y < 0 || pos.X >= WIDTH || pos.Y >= HEIGHT)
+	if (pos.X < 0 || pos.Y < 0 || pos.X >= FIELD_WIDTH || pos.Y >= FIELD_HEIGHT)
 		return (false);
 	// 현재 위치가 벽이거나 이미 방문한 곳인지 확인
 	if (maze[pos.X][pos.Y].trap.type == BLOCK || visited[pos.X][pos.Y] == VISIT)
@@ -29,22 +29,9 @@ Field findPath(Field map[FIELD_HEIGHT][FIELD_WIDTH], Field start, Field end)
 			map[i][j].nextX = 0;
 			map[i][j].nextY = 0;
 			map[i][j].direction = 0;
-
-			for (int i = 0; i < FIELD_WIDTH; i++)
-			{
-				for (int j = 0; j < FIELD_HEIGHT; j++)
-				{
-					map[i][j].nextX = 0;
-					map[i][j].nextY = 0;
-					map[i][j].direction = 0;
-				}
-			}
-
-
-
-
 		}
 	}
+
 	Queue queue;
 	Field currPos;
 	Field nextPos;	
