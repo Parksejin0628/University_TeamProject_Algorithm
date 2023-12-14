@@ -17,6 +17,9 @@ void PlayInGame()
 	Unit nowUnit;
 	int temp = 0;
 
+	PrintTitle();
+	InputManager();
+	system("cls");
 	InitGame();
 
 	while (1)
@@ -407,4 +410,14 @@ void BFS()
 	
 	
 	
+}
+
+void PrintTitle()
+{
+	printf("              \n\n\n                        °Ÿ°‚°‡°Ÿ°‚°‡°Ÿ°‚°‡°Ÿ°‚°Ÿ°‚°‡°Ÿ°‚°‡°Ÿ°‚°‡");
+	printf("\n                        °‡Random TrapDefense°‡");
+	printf("\n                        °Ÿ°‚°‡°Ÿ°‚°‡°Ÿ°‚°‡°Ÿ°‚°Ÿ°‚°‡°Ÿ°‚°‡°Ÿ°‚°‡\n\n\n\n\n\n");
+	printf("                              GAME START\n\n");
+	printf("                              How To Play\n\n");
+	printf("                                 Exit\n\n\n\n");
 }

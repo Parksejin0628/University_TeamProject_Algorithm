@@ -13,3 +13,4 @@ void InitGame();
 void InitRound(int stage);
 Unit UnitSpawn(int stagestep); //적 타입 판별
 void BFS();
+void PrintTitle();

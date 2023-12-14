@@ -5,6 +5,7 @@
 #include<string.h>
 #include<time.h>
 #include<Windows.h>
+#include<windows.h>
 #include<conio.h>
 
 //플레이어 관련
