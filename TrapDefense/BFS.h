@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ProgramBase.h"
+#include "Queue.h"
+#include"PrintManager.h"
 
 //맵의 좌표
 

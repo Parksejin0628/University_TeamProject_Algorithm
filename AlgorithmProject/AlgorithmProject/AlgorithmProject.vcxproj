@@ -136,6 +136,7 @@
     <ClCompile Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\Trap.cpp" />
     <ClCompile Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\Unit_algorithm.cpp" />
     <ClCompile Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\Upgrade.c" />
+    <ClCompile Include="..\..\TrapDefense\Priority_Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\BFS.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\Trap.h" />
     <ClInclude Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\Unit_algorithm.h" />
     <ClInclude Include="..\..\..\..\..\GitHub\University_TeamProject_Algorithm\TrapDefense\Upgrade.h" />
+    <ClInclude Include="..\..\TrapDefense\Priority_Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

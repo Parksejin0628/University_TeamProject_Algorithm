@@ -65,7 +65,7 @@ void UpdateScreen()
 		isInit = true;
 		previousPlayer = player;
 		Goto_xy(0, 0);
-		printf("TrapSeed : %3d WallSeed : %3d Gold : %3d", player.TrapSeed, player.BarricadeSeed, player.Gold);
+		printf("TrapSeed : %3d WallSeed : %3d HP : %3d", player.TrapSeed, player.BarricadeSeed, player.HP);
 		Goto_xy(0, 1);
 		printf("Stage : %3d Scroe : %3d", player.stage, player.Score);
 		for (int y = 0; y < FIELD_HEIGHT; y++)
@@ -165,7 +165,7 @@ void UpdateScreen()
 	}
 	
 	Goto_xy(0, 0);
-	printf("TrapSeed : %3d WallSeed : %3d Gold : %3d", player.TrapSeed, player.BarricadeSeed, player.Gold);
+	printf("TrapSeed : %3d WallSeed : %3d HP : %3d", player.TrapSeed, player.BarricadeSeed, player.HP);
 	Goto_xy(0, 1);
 	printf("Stage : %3d Scroe : %3d", player.stage, player.Score);
 	if (previousPlayer.cursorX != player.cursorX || previousPlayer.cursorY != player.cursorY)

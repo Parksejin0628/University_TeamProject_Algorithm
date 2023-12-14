@@ -26,12 +26,12 @@ void enPQ(Field field[10000], int distances[10000], int damage, Field pos, int* 
 
 Field popPQ(Field field[10000], int distances[10000], int* rear)
 {
+	Field tempField = {};
 	if (*rear == 1)
 	{
-		return ;
+		return tempField;
 	}
 	Field returnField;
-	Field tempField;
 	int returnDistances;
 	int tempIndex = 1;
 	int temp = 0;

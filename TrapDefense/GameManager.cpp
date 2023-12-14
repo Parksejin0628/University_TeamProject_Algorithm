@@ -4,25 +4,27 @@ Field field[FIELD_HEIGHT][FIELD_WIDTH];
 Player player;
 bool isBuildTurn = true;
 Unit unitQueue[MAX_ENEMY];
-int frontIndex = -1;
-int rearIndex = -1;
+
 
 void PlayInGame()
 {
 	bool defenseStart = false;
 	double frameStart = clock();
+	static int frontIndex = 0;
+	static int rearIndex = -1;
 	int X = 0;
 	int Y = 0;
 	Unit nowUnit;
+	int temp = 0;
 
 	InitGame();
-	
+
 	while (1)
 	{
 		UpdateScreen();
 		if (isBuildTurn)
 		{
-
+			UpdateScreen();
 			Goto_xy(60, 0);
 			printf("입력완료 %d, %d", player.cursorX, player.cursorY);
 
@@ -58,17 +60,18 @@ void PlayInGame()
 				//턴 넘기기
 				break;
 			case VK_Q:
-				if (field[player.cursorY-2][player.cursorX].type == NONE)
+				if (field[player.cursorY - 2][player.cursorX].type == NONE && player.BarricadeSeed > 0)
 				{
-					field[player.cursorY-2][player.cursorX].type = BLOCK;
+					field[player.cursorY - 2][player.cursorX].type = BLOCK;
+					player.BarricadeSeed -= 1;
 				}
 				//바리게이트 설치
 				break;
 			case VK_W:
-				if (field[player.cursorY-2][player.cursorX].type == NONE)
+				if (field[player.cursorY - 2][player.cursorX].type == NONE && player.TrapSeed > 0)
 				{
-					field[player.cursorY-2][player.cursorX].trap = InitTrap(player.cursorX, player.cursorY-2);
-					field[player.cursorY-2][player.cursorX].type = field[player.cursorY-2][player.cursorX].trap.type;
+					field[player.cursorY - 2][player.cursorX].trap = InitTrap(player.cursorX, player.cursorY - 2);
+					field[player.cursorY - 2][player.cursorX].type = field[player.cursorY - 2][player.cursorX].trap.type;
 				}
 				//타일 설치
 				break;
@@ -79,19 +82,19 @@ void PlayInGame()
 			if (!defenseStart)
 			{
 				InitRound(++player.stage);
-				
+
 				defenseStart = true;
-			}
+			} 
 			if (clock() - frameStart > FRAMETIME)
 			{
-				for (int i = frontIndex; i > rearIndex; i--)
+				for (int i = frontIndex; i <= rearIndex; i++)
 				{
 					nowUnit = unitQueue[i % MAX_ENEMY];
 					X = nowUnit.xpos;
 					Y = nowUnit.ypos;
 					field[Y + field[Y][X].nextY][X + field[Y][X].nextX].unit = nowUnit;
-					nowUnit.xpos = X + field[Y][X].nextX;
-					nowUnit.ypos = Y + field[Y][X].nextY;
+					unitQueue[i % MAX_ENEMY].xpos = X + field[Y][X].nextX;
+					unitQueue[i % MAX_ENEMY].ypos = Y + field[Y][X].nextY;
 					if (field[Y][X].trap.isExist == true)
 					{
 						field[Y][X].type = field[Y][X].trap.type;
@@ -100,26 +103,75 @@ void PlayInGame()
 					{
 						field[Y][X].type = NONE;
 					}
-					field[Y + field[Y][X].nextY][X + field[Y][X].nextX].type = ENEMY;
+					if (field[Y + field[Y][X].nextY][X + field[Y][X].nextX].trap.isExist == 1)
+					{
+						unitQueue[i % MAX_ENEMY].HP -= field[Y + field[Y][X].nextY][X + field[Y][X].nextX].trap.damage;
+					}
+					else if (field[Y + field[Y][X].nextY][X + field[Y][X].nextX].type == BASE)
+					{
+						unitQueue[i % MAX_ENEMY].HP = -1;
+						player.HP -= 1;
+						if (player.HP <= 0)
+						{
+							UpdateScreen();
+							exit(1);
+						}
+					}
+					if (unitQueue[i % MAX_ENEMY].HP > 0)
+					{
+						field[Y + field[Y][X].nextY][X + field[Y][X].nextX].type = ENEMY;
+					}
+					else if (unitQueue[i % MAX_ENEMY].HP <= 0)
+					{
+						++frontIndex;
+						player.deadUnitCount++;
+						if (player.deadUnitCount >= player.maxUnitCount)
+						{
+							isBuildTurn = true;
+							player.BarricadeSeed += 10;
+							player.TrapSeed += 5;
+						}
+					}
+					
+					
+					/*
+					Goto_xy(70, i+3);
+					printf("help me %3d %3d %3d", i, frontIndex, rearIndex);
+					Goto_xy(0, 30);
+					for (int y = 0; y < FIELD_HEIGHT; y++)
+					{
+						for (int x = 0; x < FIELD_WIDTH; x++)
+						{
+							printf("%d ", field[y][x].type);
+						}
+						printf("\n");
+					}
+					*/
 				}
+				//UpdateScreen();
 				if (player.nowUnitCount < player.maxUnitCount)
-				{
+				{ 
 					player.nowUnitCount++;
-					unitQueue[++frontIndex % MAX_ENEMY] = UnitSpawn(player.stage);
-					X = unitQueue[frontIndex % MAX_ENEMY].xpos;
-					Y = unitQueue[frontIndex % MAX_ENEMY].ypos;
-					field[X][Y].unit = unitQueue[frontIndex % MAX_ENEMY];
+					unitQueue[++rearIndex % MAX_ENEMY] = UnitSpawn(player.stage);
+					X = unitQueue[rearIndex % MAX_ENEMY].xpos;
+					Y = unitQueue[rearIndex % MAX_ENEMY].ypos;
+					field[Y][X].unit = unitQueue[rearIndex % MAX_ENEMY];
+					field[Y][X].type = ENEMY;
+					
+					
 				}
+				frameStart = clock();
+				
 			}
 		}
 	}
-		
+
 
 }
 
 void InitGame()
 {
-	player.HP = 50;
+	player.HP = 5;
 	player.TrapSeed = INIT_TRAP_SEED;
 	player.BarricadeSeed = INIT_BARRICADE_SEED;
 	player.Gold = INIT_GOLD;
@@ -268,34 +320,91 @@ void InitRound(int stage)
 {
 
 	player.stage = stage;
-	
+	/*
 	if (stage % 5 == 0)
 	{
 		player.maxUnitCount = 1;
 		findBossPath(field, field[0][9], field[24][12]);
-	}
-	else
-	{
+	}*/
+	//else
+	//{
 		player.maxUnitCount = ENEMY_INIT_NUMBER + stage / 3;
-		findPath(field, field[0][9], field[24][12]);
-	}
+		BFS();
+	//}
 	player.nowUnitCount = 0;
 	player.deadUnitCount = 0;
+
 }
 
 Unit UnitSpawn(int stagestep) { //적 유닛 생성함수, //스테이지 정보를 받아와야 한다.
-    //보스 스테이지가 5의배수 스테이지에 생성 단 한마리만
-    if (stagestep%5==0) {
-        Unit boss = { ENEMY_HP + stagestep,ENEMY_SPAWN_XPOS, ENEMY_SPAWN_YPOS,true,true };
-        return boss;
-    }
-    else {
-        Unit enemy = {};
-        enemy.HP = ENEMY_HP + stagestep - 1;
-        enemy.isActive = true;
-        enemy.isBoss = false;
-        enemy.xpos = ENEMY_SPAWN_XPOS; //여기서 위치조정
-        enemy.ypos = ENEMY_SPAWN_YPOS;
-        return enemy;
-    } 
+	//보스 스테이지가 5의배수 스테이지에 생성 단 한마리만
+	/*if (stagestep % 5 == 0) {
+		Unit boss = { ENEMY_HP + stagestep,ENEMY_SPAWN_XPOS, ENEMY_SPAWN_YPOS,true,true };
+		return boss;
+	}*/
+	//else {
+		Unit enemy = {};
+		enemy.HP = ENEMY_HP + stagestep - 1;
+		enemy.isActive = true;
+		enemy.isBoss = false;
+		enemy.xpos = ENEMY_SPAWN_XPOS; //여기서 위치조정
+		enemy.ypos = ENEMY_SPAWN_YPOS;
+		return enemy;
+	//}
+}
+
+void BFS()
+{
+	Position queue[100] = {};
+	Position nowPos = { 12, 24 };
+	bool isCheck[FIELD_HEIGHT][FIELD_WIDTH] = { false };
+	int frontIndex = -1;
+	int rearIndex = -1;
+
+	
+
+	queue[++frontIndex % 100] = { 12, 24 };
+	isCheck[nowPos.Y][nowPos.X] = true;
+	field[24][12].nextX = 0;
+	field[24][12].nextY = 1;
+
+	
+	
+
+	while (frontIndex != rearIndex)
+	{
+		nowPos = queue[++rearIndex % 100];
+		if (nowPos.X + 1 < FIELD_WIDTH && isCheck[nowPos.Y][nowPos.X+1] == false && field[nowPos.Y][nowPos.X + 1].type != BLOCK)
+		{
+			queue[++frontIndex % 100] = { (short)(nowPos.X + 1), nowPos.Y };
+			isCheck[nowPos.Y][nowPos.X + 1] = true;
+			field[nowPos.Y][nowPos.X + 1].nextX = -1;
+			field[nowPos.Y][nowPos.X + 1].nextY = 0;
+		}
+		if (nowPos.X - 1 >= 0 && isCheck[nowPos.Y][nowPos.X - 1] == false && field[nowPos.Y][nowPos.X - 1].type != BLOCK)
+		{
+			queue[++frontIndex % 100] = { (short)(nowPos.X - 1), nowPos.Y };
+			isCheck[nowPos.Y][nowPos.X - 1] = true;
+			field[nowPos.Y][nowPos.X - 1].nextX = 1;
+			field[nowPos.Y][nowPos.X - 1].nextY = 0;
+		}
+		if (nowPos.Y + 1 < FIELD_HEIGHT && isCheck[nowPos.Y + 1][nowPos.X] == false && field[nowPos.Y + 1][nowPos.X].type != BLOCK)
+		{
+			queue[++frontIndex % 100] = { (short)(nowPos.X), (short)(nowPos.Y + 1) };
+			isCheck[nowPos.Y + 1][nowPos.X] = true;
+			field[nowPos.Y + 1][nowPos.X].nextX = 0;
+			field[nowPos.Y + 1][nowPos.X].nextY = -1;
+		}
+		if (nowPos.Y - 1 >=  0 && isCheck[nowPos.Y - 1][nowPos.X] == false && field[nowPos.Y - 1][nowPos.X].type != BLOCK)
+		{
+			queue[++frontIndex % 100] = { (short)(nowPos.X), (short)(nowPos.Y - 1) };
+			isCheck[nowPos.Y - 1][nowPos.X] = true;
+			field[nowPos.Y - 1][nowPos.X].nextX = 0;
+			field[nowPos.Y - 1][nowPos.X].nextY = 1;
+		}
+
+	}
+	
+	
+	
 }

@@ -14,8 +14,8 @@
 #define HELL_PLAYER_HP 1
 
 //플레이어 관련 재화
-#define INIT_TRAP_SEED 3 //초기 함정 설치 개수
-#define INIT_BARRICADE_SEED 5//초기 바리케이드 개수
+#define INIT_TRAP_SEED 10 //초기 함정 설치 개수
+#define INIT_BARRICADE_SEED 20//초기 바리케이드 개수
 #define INIT_GOLD 0 //초기 골드
 
 //본진 위치
@@ -33,7 +33,7 @@
 #define STAR_TRAP_DAMAGE 10
 
 //적 체력 관련
-#define ENEMY_HP 3 //적 초기 체력 hp
+#define ENEMY_HP 10 //적 초기 체력 hp
 #define ENEMY_INIT_NUMBER 10 //적 초기 숫자
 
 //적 스폰 위치
@@ -61,7 +61,7 @@
 #define VK_Q 0x51
 #define VK_W 0x57
 //프레임 관련 변수
-#define FRAMETIME 0.1
+#define FRAMETIME 250
 
 
 typedef enum {
@@ -137,6 +137,7 @@ typedef struct Player {
     int maxUnitCount;
     int deadUnitCount;
 }Player;
+
 
 
 #pragma warning(disable:4996)
